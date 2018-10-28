@@ -1,6 +1,7 @@
 'use strict';
 
-import storage from '../lib/storage/memory.js';
+// import storage from '../lib/storage/memory.js';
+import storage from '../lib/storage/storage.js';
 
 
 class Users {

@@ -10,6 +10,7 @@ import errorHandler from './middleware/error.js';
 import notFound from './middleware/404.js';
 import apiRouter from './api/v1.js';
 
+
 // Prepare the express app
 const app = express();
 
