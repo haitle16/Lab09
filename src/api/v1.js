@@ -2,7 +2,7 @@
 
 import express from 'express';
 
-import modelFinder from '../middleware/model-finder.js'
+import modelFinder from '../middleware/model-finder.js';
 // import notes from '../models/notes.js';
 
 const router = express.Router();
@@ -30,35 +30,38 @@ router.get('/api/v1/:model', (request,response,next) => {
     .catch( next );
 });
 
-router.get('/api/v1/notes/:model/:id', (request,response,next) => {
+router.get('/api/v1/:model/:id', (request,response,next) => {
   request.model.find({_id:request.params.id})
     .then( result => sendJSON(result, response) )
     .catch( next );
 });
 
-router.post('/api/v1/:model/notes', (request,response,next) => {
+router.post('/api/v1/:model', (request,response,next) => {
   request.model.save(request.body)
     .then( result => sendJSON(result, response) )
     .catch( next );
 });
 
-router.put('/api/v1/:model/notes/:id', (request,response,next) => {
+router.put('/api/v1/:model/:id', (request,response,next) => {
   //changed to put lose the memory first try.. look up!!
   request.model.put(request.params.id, request.body)
     .then( result => sendJSON(result, response) )
     .catch( next );
 });
 
-router.patch('/api/v1/:model/notes/:id', (request,response,next) => {
+router.patch('/api/v1/:model/:id', (request,response,next) => {
   request.model.patch(request.params.id, request.body)
     .then( result => sendJSON(result, response) )
     .catch( next );
 });
 
-router.delete('/api/v1/:model/notes/:id', (request,response,next) => {
+router.delete('/api/v1/:model/:id', (request,response,next) => {
   request.model.delete(request.params.id)
-    .then( result => sendJSON(result, response) )
-    .catch( next );
+  .then( () => {
+    response.statusCode = 200;
+    response.end();
+  })
+  .catch( console.error );
 });
 
 export default router;
