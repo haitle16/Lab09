@@ -31,20 +31,6 @@ describe('api server', () => {
 
     });
 
-    it('should respond properly on request to /api/v1/notes', () => {
-
-        return mockRequest
-            .get('/api/v1/notes')
-            .then(results => {
-                console.log(status);
-                expect(results.status).toBe(200);
-            })
-            .catch(err => {
-                expect(err).not.toBeDefined();
-            });
-
-    });
-
     it('should respond properly on request to /api/v1/notes/:id', () => {
 
         return mockRequest
